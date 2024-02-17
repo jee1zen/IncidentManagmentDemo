@@ -1,0 +1,86 @@
+﻿@page
+@model IncidentManagmentDemo.Pages.Worker.Incidents.CreateModel
+@{
+}
+<div class="row">
+    <div class="col-md-8 mx-auto rounded border p-3">
+        <h2 class="text-center mb-5"> Report New Incident </h2>
+        @if(Model.errorMessage.Length > 0)
+        {
+           <div class="alert alert-warning alert-dismissible fade show" role="alert">
+               <strong>@Model.errorMessage</strong>
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close" ></button>
+           </div>
+        }else if (Model.successMessage.Length > 0)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>@Model.successMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="close"></button>
+            </div>
+            
+        }
+
+    <form method="post" enctype="multipart/form-data">
+        <div class="row mb-3">
+            <label class="col-sm-4">Title</label>
+            <div class="col-sm-8">
+                <input class="form-control" asp-for="IncidentDto.Title"/>
+                <span asp-validation-for="IncidentDto.Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-4">Description</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" asp-for="IncidentDto.Details">
+
+                </textarea>
+               
+                <span asp-validation-for="IncidentDto.Details" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-4">Intensity</label>
+            <div class="col-sm-8">
+                <select class="form-control" asp-for="IncidentDto.Intensity">
+                    <option value="1" >Low</option>
+                    <option value="2">Normal</option>
+                    <option value="3">Critical</option>
+                </select>
+                <span asp-validation-for="IncidentDto.Intensity" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-4">Location</label>
+            <div class="col-sm-8">
+                <input class="form-control" asp-for="IncidentDto.Location" />
+                <span asp-validation-for="IncidentDto.Location" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label class="col-sm-4">Image</label>
+            <div class="col-sm-8">
+                <input class="form-control" asp-for="IncidentDto.Image" />
+                <span asp-validation-for="IncidentDto.Image" class="text-danger"></span>
+            </div>
+        </div>
+            <div class="row mb-3">
+                <label class="col-sm-4">Noticed On</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="IncidentDto.Reported" type="datetime-local" format="YYYY-MM-DD[T]HH:mm" />
+                    <span asp-validation-for="IncidentDto.Reported" class="text-danger"></span>
+                </div>
+            </div>
+        <div class="row mb-3">
+            <div class="offset-sm-4 col-sm-4 d-grid">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            <div class="col-sm-4 d-grid">
+                <a class="btn btn-outline-primary" href="/Worker/Incidents/Index" role="button">Cancel</a>
+            </div>
+
+        </div>
+
+
+    </form>
+    </div>
+</div>
